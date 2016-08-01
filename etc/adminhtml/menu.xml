@@ -7,7 +7,7 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="WiseRobot_WiseDataMigration::migrate" title="Ub Data Migration" module="WiseRobot_WiseDataMigration" sortOrder="80"
+        <add id="WiseRobot_WiseDataMigration::migrate" title="Wise Data Migration" module="WiseRobot_WiseDataMigration" sortOrder="80"
              action="wisedatamigration/index" resource="WiseRobot_WiseDataMigration::migrate"/>
     </menu>
 </config>
