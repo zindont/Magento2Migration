@@ -1,6 +1,6 @@
 <?php
 \Magento\Framework\Component\ComponentRegistrar::register(
     \Magento\Framework\Component\ComponentRegistrar::MODULE,
-    'Ubertheme_Ubdatamigration',
+    'WiseRobot_WiseDataMigration',
     __DIR__
 );
