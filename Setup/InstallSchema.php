@@ -3,7 +3,7 @@
  * Copyright © 2015 UberTheme. All rights reserved.
 */
 
-namespace Ubertheme\Ubdatamigration\Setup;
+namespace WiseRobot\WiseDataMigration\Setup;
 
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\Setup\InstallSchemaInterface;
@@ -26,12 +26,12 @@ class InstallSchema implements InstallSchemaInterface
 
         $om = \Magento\Framework\App\ObjectManager::getInstance();
         $reader = $om->get('Magento\Framework\Module\Dir\Reader');
-        $sourceDir = $reader->getModuleDir('', 'Ubertheme_Ubdatamigration').'/lib/';
+        $sourceDir = $reader->getModuleDir('', 'WiseRobot_WiseDataMigration').'/lib/';
         if (is_dir($sourceDir)) {
             //we will update/save source of this lib at pub folder
             $pubDir = $om->get('Magento\Framework\Filesystem')->getDirectoryRead(DirectoryList::PUB);
             $toolDir = $pubDir->getAbsolutePath('ub-tool/');
-            $helper = $om->get('Ubertheme\Ubdatamigration\Helper\File');
+            $helper = $om->get('WiseRobot\WiseDataMigration\Helper\File');
             //delete old source of tool
             $helper->rrmdir($toolDir);
             //copy new source of this tool

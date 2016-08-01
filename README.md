@@ -33,7 +33,7 @@ Follow [Installation guide](http://devdocs.magento.com/guides/v2.0/install-gde/i
 - Example: 
 ![load module](http://i.prntscr.com/adb0c005b4e141088bd96c1c61d9f7c7.png)
 - Enable the module: In your terminal window run bellow commands:
-+ `php -f PATH_YOUR_MAGENTO_2/bin/magento module:enable --clear-static-content Ubertheme_Ubdatamigration`
++ `php -f PATH_YOUR_MAGENTO_2/bin/magento module:enable --clear-static-content WiseRobot_WiseDataMigration`
 + `php -f PATH_YOUR_MAGENTO_2/bin/magento setup:upgrade`
 - Examples:
 ![enable module](http://i.imgur.com/ksW98w8.png)

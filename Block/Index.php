@@ -4,7 +4,7 @@
  * See COPYING.txt for license details.
  */
 
-namespace Ubertheme\Ubdatamigration\Block;
+namespace WiseRobot\WiseDataMigration\Block;
 
 class Index extends \Magento\Backend\Block\Template
 {

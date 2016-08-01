@@ -3,7 +3,7 @@
     <update handle="styles" />
     <body>
         <referenceContainer name="content">
-            <block class="Ubertheme\Ubdatamigration\Block\Index" name="migrate_index" template="Ubertheme_Ubdatamigration::index.phtml"/>
+            <block class="WiseRobot\WiseDataMigration\Block\Index" name="migrate_index" template="WiseRobot_WiseDataMigration::index.phtml"/>
         </referenceContainer>
     </body>
 </page>

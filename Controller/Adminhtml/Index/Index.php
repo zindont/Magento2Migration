@@ -1,6 +1,6 @@
 <?php
 
-namespace Ubertheme\Ubdatamigration\Controller\Adminhtml\Index;
+namespace WiseRobot\WiseDataMigration\Controller\Adminhtml\Index;
 
 use Magento\Framework\App\Filesystem\DirectoryList;
 
@@ -31,7 +31,7 @@ class Index extends \Magento\Backend\App\Action
      */
     protected function _isAllowed()
     {
-        return $this->_authorization->isAllowed('Ubertheme_Ubdatamigration::index');
+        return $this->_authorization->isAllowed('WiseRobot_WiseDataMigration::index');
     }
 
     /**
@@ -41,7 +41,7 @@ class Index extends \Magento\Backend\App\Action
 
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
         $resultPage = $this->getResultPageFactory()->create();
-        $resultPage->setActiveMenu('Ubertheme_Ubdatamigration::migrate');
+        $resultPage->setActiveMenu('WiseRobot_WiseDataMigration::migrate');
         $resultPage->addBreadcrumb(__('Migrate'), __('Migrate'));
         $resultPage->getConfig()->getTitle()->prepend(__('UB Data Migration'));
 

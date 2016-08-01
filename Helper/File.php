@@ -1,6 +1,6 @@
 <?php
 
-namespace Ubertheme\Ubdatamigration\Helper;
+namespace WiseRobot\WiseDataMigration\Helper;
 
 /**
  * Cache helper
