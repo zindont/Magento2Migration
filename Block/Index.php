@@ -38,7 +38,7 @@ class Index extends \Magento\Backend\Block\Template
     
     public function getToolUrl(){
         $pubFolder = \Magento\Framework\App\Filesystem\DirectoryList::PUB;
-        $toolUrl = $this->_storeManager->getStore()->getBaseUrl().'/'.$pubFolder.'/ub-tool';
+        $toolUrl = $this->_storeManager->getStore()->getBaseUrl().'/'.$pubFolder.'/wisedatamigration';
         $toolUrl = str_replace('index.php/', '', $toolUrl);
         return $toolUrl;
     }

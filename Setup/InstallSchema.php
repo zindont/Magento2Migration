@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 UberTheme. All rights reserved.
+ * Copyright © 2016 WiseRobot. All rights reserved.
 */
 
 namespace WiseRobot\WiseDataMigration\Setup;
@@ -30,7 +30,7 @@ class InstallSchema implements InstallSchemaInterface
         if (is_dir($sourceDir)) {
             //we will update/save source of this lib at pub folder
             $pubDir = $om->get('Magento\Framework\Filesystem')->getDirectoryRead(DirectoryList::PUB);
-            $toolDir = $pubDir->getAbsolutePath('ub-tool/');
+            $toolDir = $pubDir->getAbsolutePath('wisedatamigration/');
             $helper = $om->get('WiseRobot\WiseDataMigration\Helper\File');
             //delete old source of tool
             $helper->rrmdir($toolDir);
