@@ -5,7 +5,7 @@ return CMap::mergeArray(
     require(dirname(__FILE__) . '/config.php'), array(
 
         'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-        'name'=>'Migrate Data Tool: Allow migrate data from Magento CE 1.x to Magento CE 2.x',
+        'name'=>'Migrate Data From Magento 1.x to Magento 2.x',
 
         // preloading 'log' component
         'preload'=>array('log'),
@@ -77,11 +77,11 @@ return CMap::mergeArray(
         // using Yii::app()->params['paramName']
         'params'=> array(
             // this is displayed in the header section
-            'title'=>'Migrate Data Tool for Magento - UberTheme',
+            'title'=>'WiseDataMigration - WiseRobot',
             // this is used in error pages
-            'adminEmail'=>'quynhvv@joomsolutions.com',
+            'adminEmail'=>'an.ho1991@gmail.com',
             // the copyright information displayed in the footer section
-            'copyrightInfo'=>'Copyright &copy; 2015 by Ubertheme.com',
+            'copyrightInfo'=>'Copyright &copy; 2016 by WiseRobot',
         )
     )
 );
