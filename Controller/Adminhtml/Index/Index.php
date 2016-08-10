@@ -43,7 +43,7 @@ class Index extends \Magento\Backend\App\Action
         $resultPage = $this->getResultPageFactory()->create();
         $resultPage->setActiveMenu('WiseRobot_WiseDataMigration::migrate');
         $resultPage->addBreadcrumb(__('Migrate'), __('Migrate'));
-        $resultPage->getConfig()->getTitle()->prepend(__('UB Data Migration'));
+        $resultPage->getConfig()->getTitle()->prepend(__('Wise Data Migration'));
 
         return $resultPage;
     }
