@@ -16,7 +16,7 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
 </head>
 <body>
-<div id="page" class="container">
+<div id="page" class="container-fluid">
     <div class="row">
         <div id="header">
             <div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
