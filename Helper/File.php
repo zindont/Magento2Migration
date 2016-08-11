@@ -60,7 +60,7 @@ class File extends \Magento\Framework\App\Helper\AbstractHelper {
         if (strpos($source, '/runtime/') !== FALSE
             || strpos($source, '/config/') !== FALSE
             || strpos($source, '/data/') !== FALSE ) {
-            self::xcopy($source, $dest, $permissions);
+            return self::xcopy($source, $dest, $permissions);
         }        
         // Symlink file
         if (is_file($source)) {
