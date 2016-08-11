@@ -1,5 +1,5 @@
 <?php $this->beginContent('/layouts/main'); ?>
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div id="menu" class="col-lg-3">
             <nav class="">
