@@ -35,9 +35,9 @@ class InstallSchema implements InstallSchemaInterface
             //delete old source of tool
             $helper->rrmdir($toolDir);
             //copy new source of this tool
-            $helper->xcopy($sourceDir, $toolDir, 0775);
+            $helper->xsymlink($sourceDir, $toolDir, 0775);
             //delete source folders/files
-            $helper->rrmdir($sourceDir);    
+            //$helper->rrmdir($sourceDir);    
         }
         
         $installer->endSetup();

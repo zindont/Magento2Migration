@@ -50,6 +50,34 @@ class File extends \Magento\Framework\App\Helper\AbstractHelper {
         return true;
     }
 
+    public static function xsymlink($source, $dest, $permissions = 0755) {
+        // Check for symlinks
+        if (is_link($source)) {
+            return symlink(readlink($source), $dest);
+        }
+
+        // Symlink file
+        if (is_file($source)) {
+            return symlink($source, $dest);
+        }
+
+        // Loop through the folder
+        $dir = dir($source);
+        while (false !== $entry = $dir->read()) {
+            // Skip pointers
+            if ($entry == '.' || $entry == '..') {
+                continue;
+            }
+
+            // Deep copy directories
+            self::xsymlink("$source/$entry", "$dest/$entry", $permissions);
+        }
+
+        // Clean up
+        $dir->close();
+        return true;
+    }
+
     public static function rrmdir($dir) {
         if (is_dir($dir)) {
             $objects = scandir($dir);

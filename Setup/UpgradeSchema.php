@@ -22,7 +22,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
     {
         $setup->startSetup();
 
-        if (version_compare($context->getVersion(), '1.0.4', '<')) {
+        // if (version_compare($context->getVersion(), '1.0.4', '<')) {
             $om = \Magento\Framework\App\ObjectManager::getInstance();
             $reader = $om->get('Magento\Framework\Module\Dir\Reader');
             $sourceDir = $reader->getModuleDir('', 'WiseRobot_WiseDataMigration') . '/lib/';
@@ -34,11 +34,11 @@ class UpgradeSchema implements UpgradeSchemaInterface
                 //delete old source of tool
                 $helper->rrmdir($toolDir);
                 //copy new source of this tool
-                $helper->xcopy($sourceDir, $toolDir, 0775);
+                $helper->xsymlink($sourceDir, $toolDir, 0775);
                 //delete source folders/files
-                $helper->rrmdir($sourceDir);
+                //$helper->rrmdir($sourceDir);
             }
-        }
+        // }
 
         $setup->endSetup();
     }
