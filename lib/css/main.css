@@ -111,6 +111,9 @@ legend.scheduler-border {
 }
 .progress-bar-success{color: #000;}
 blockquote{font-size: 12px;}
+#processor-box{
+    overflow: hidden;
+}
 #processor-box .loading-box{width: 300px !important; text-align: center;}
 /*start css for categories tree*/
 .tree span.root-category, .tree input {cursor: pointer;}
@@ -194,4 +197,7 @@ blockquote{font-size: 12px;}
     max-width: 100% !important;
     text-align: center;
     width: auto !important;
+}
+.modal-backdrop{
+    background-color: #FFF;
 }
