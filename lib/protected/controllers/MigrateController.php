@@ -1021,6 +1021,8 @@ class MigrateController extends Controller
                         $products = Mage1CatalogProductEntity::model()->findAll("type_id = '{$type_id}'");
                         if ($products){
                             foreach ($products as $product){
+                                if (MigrateSteps::MG1HasProduct($product->entity_id))
+                                    break;
 
                                 $product2 = new Mage2CatalogProductEntity();
                                 foreach ($product2->attributes as $key => $value){

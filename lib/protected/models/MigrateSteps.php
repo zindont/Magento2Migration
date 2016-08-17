@@ -475,6 +475,23 @@ class MigrateSteps extends MigrateStepsPeer
         return $total;
     }
 
+    public static function MG1HasProduct($entity_id){
+        $result = 0;
+        if ($entity_id > 0){
+            $migrated_store_ids = isset(Yii::app()->session['migrated_store_ids']) ? Yii::app()->session['migrated_store_ids'] : array();
+            $str_store_ids = implode(',', $migrated_store_ids);
+            $db = Yii::app()->mage2;
+            $tablePrefix = $db->tablePrefix;
+
+            $sql = "SELECT COUNT(entity_id) FROM {$tablePrefix}catalog_product_entity";
+            $sql .= " WHERE entity_id = '{$entity_id}' ";
+            echo $sql;
+            $result = $db->createCommand($sql)->queryScalar();
+        }
+
+        return $result;
+    }
+
     public static function getMG1VersionOptions(){
         $options = array(
             'mage19x' => Yii::t('frontend', 'Magento 1.9.x'),
