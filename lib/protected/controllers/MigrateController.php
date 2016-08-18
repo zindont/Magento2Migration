@@ -196,7 +196,7 @@ class MigrateController extends Controller
 //                    }
 //                }
                 //auto load database 2 settings if exists
-                $configFilePath = Yii::app()->basePath ."/../../../app/etc/env.php";
+                $configFilePath = MigrateSteps::getMG2BasePath() ."app/etc/env.php";
                 if (file_exists($configFilePath)){
                     $configData = require $configFilePath;
                     $settings = (object)json_decode($step->migrated_data);
@@ -3889,6 +3889,7 @@ class MigrateController extends Controller
     public function actionResetAll(){
         $dataPath = Yii::app()->basePath .DIRECTORY_SEPARATOR. "data".DIRECTORY_SEPARATOR;
         $steps = MigrateSteps::model()->findAll();
+        $mage2ver = (MigrateSteps::getMG2Version() == '2.1.0') ? '2.1.0' : '';
         if ($steps){
             foreach ($steps as $step){
                 //only for step1
@@ -3897,16 +3898,20 @@ class MigrateController extends Controller
                     $step->migrated_data = null;
                     $step->update();
                 }
-
-                //other steps
-                $resetSQLFile = $dataPath . "step{$step->sorder}_reset.sql";
-                if (file_exists($resetSQLFile)) {
-                    $rs = MigrateSteps::executeFile($resetSQLFile);
-                    if ($rs){
-                        $step->status = MigrateSteps::STATUS_NOT_DONE;
-                        $step->migrated_data = null;
-                        $step->update();
-                    }
+                else{
+                    //other steps
+                    $resetSQLFile = $dataPath . "step{$step->sorder}_reset{$mage2ver}.sql";
+                    if (file_exists($resetSQLFile)) {
+                        $rs = MigrateSteps::executeFile($resetSQLFile);
+                        if ($rs){
+                            $step->status = MigrateSteps::STATUS_NOT_DONE;
+                            $step->migrated_data = null;
+                            $step->update();
+                        }
+                    } else{
+                        Yii::app()->user->setFlash('error', Yii::t('frontend', "Missing reset SQL file <strong>step{$step->sorder}_reset{$mage2ver}.sql</strong>"));
+                        $this->redirect(MigrateSteps::getNextSteps());
+                    }                    
                 }
             }
 

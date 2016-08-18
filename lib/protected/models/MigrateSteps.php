@@ -513,6 +513,23 @@ class MigrateSteps extends MigrateStepsPeer
         return $ver;
     }
 
+    public static function getMG2Version(){
+        $ver = NULL;
+        $composerFile = self::getMG2BasePath().'composer.json';
+        if (file_exists($composerFile)){
+            $configData = file_get_contents($composerFile);
+            $configData = json_decode($configData,true );
+            $ver = $configData['version'];
+        }
+        return $ver;
+    }    
+
+    public static function getMG2BasePath(){
+        $mage2path = Yii::app()->basePath;
+        $mage2path = substr_replace($mage2path , '' , strpos($mage2path, 'app') ,strlen($mage2path) );
+        return $mage2path;
+    }
+
     public static function replaceCatalogRuleModels($data){
         $finds = array(
             's:34:"catalogrule/rule_condition_combine"',
