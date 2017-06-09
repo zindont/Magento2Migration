@@ -17,8 +17,8 @@ $migrated_type_ids = isset(Yii::app()->session['migrated_product_type_ids']) ? Y
         <ul class="list-group">
             <li class="list-group-item">
                 <h3 class="list-group-item-heading">
-                    <input type="checkbox" id="select-all" name="select_all_type" title="<?php echo Yii::t('frontend', 'Click here to select all product types.')?>" />
-                    <?php echo Yii::t('frontend', 'Product Types'); ?>
+                    <input type="checkbox" id="select-all" name="select_all_type" <?php echo (sizeof($migrated_type_ids) == 6) ? "checked" : ''; ?> title="<?php echo Yii::t('frontend', 'Click here to select all product types.')?>" />
+                    <label for="select-all"><?php echo Yii::t('frontend', 'Product Types'); ?></label>
                 </h3>
                 <?php if (isset($product_type_ids) && $product_type_ids): ?>
                 <ul class="list-group">

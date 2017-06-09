@@ -16,17 +16,19 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
 </head>
 <body>
-<div id="page" class="container-fluid">
+<div id="page" class="container">
     <div class="row">
         <div id="header">
-            <div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
+<!--            <div id="logo">--><?php //echo CHtml::encode(Yii::app()->name); ?><!--</div>-->
         </div>
         <!--// header -->
         <?php echo $content; ?>
         
         <div id="footer">
-            Copyright &copy; <?php echo date('Y'); ?> by <a href="http://wiserobot.com/" target="_blank">an@wiserobot - WiseRobot</a>.<br/>
+            Copyright &copy; <?php echo date('Y'); ?> by <a href="//www.ubertheme.com/" target="_blank">UberTheme</a>.<br/>
             All Rights Reserved.<br/>
+            <?php echo Yii::powered(); ?>
+            <div id="report-bugs"><a target="_blank" href="//www.ubertheme.com/ask-question/" title="<?php echo Yii::t('frontend', 'Report Bugs')?>"><?php echo Yii::t('frontend', 'Report Bugs')?></a></div>
         </div><!-- footer -->
     </div>
 </div><!-- page -->

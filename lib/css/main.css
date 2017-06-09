@@ -6,15 +6,15 @@ body{
 	background: #EFEFEF;
 }
 #page{
-	/*margin-top: 5px;*/
-	/*margin-bottom: 5px;*/
+	margin-top: 5px;
+	margin-bottom: 5px;
 	background: white;
-	/*border: 1px solid #C9E0ED;*/
+	border: 1px solid #C9E0ED;
 }
 #header{
 	margin: 0px 0px 30px 0px;
 	padding: 0px;
-	/*border-top: 3px solid #C9E0ED;*/
+	border-top: 3px solid #C9E0ED;
     border-bottom:1px solid #eaeaea;
 }
 #content{
@@ -87,8 +87,8 @@ div.breadcrumbs span{
 	margin: 0;
 }
 .step-controls {
-    margin: 20px;
-    padding: 10px;
+    margin: 20px 0px;
+    padding: 10px 0px;
     text-align: right;
 }
 #btn-reset {
@@ -111,9 +111,6 @@ legend.scheduler-border {
 }
 .progress-bar-success{color: #000;}
 blockquote{font-size: 12px;}
-#processor-box{
-    overflow: hidden;
-}
 #processor-box .loading-box{width: 300px !important; text-align: center;}
 /*start css for categories tree*/
 .tree span.root-category, .tree input {cursor: pointer;}
@@ -198,6 +195,8 @@ blockquote{font-size: 12px;}
     text-align: center;
     width: auto !important;
 }
-.modal-backdrop{
-    background-color: #FFF;
-}
+#menu .portlet-content a span.skipped{color: #f00;}
+li.website{background: #ddd;}
+li.store{background: #eee;}
+li.store-view{background: #fff;}
+.upgrade-tip{font-size: 14px;}

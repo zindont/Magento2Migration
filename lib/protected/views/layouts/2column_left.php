@@ -1,10 +1,13 @@
 <?php $this->beginContent('/layouts/main'); ?>
-<div class="container-fluid">
+<div class="container">
     <div class="row">
         <div id="menu" class="col-lg-3">
             <nav class="">
                 <?php $this->widget('UserMenu', array()); ?>
             </nav> <!--// sidebar -->
+            <div class="guide-banner">
+                <a href="//www.ubertheme.com/ask-question/" title="Do you have any question?" target="_blank"><img src="<?php echo Yii::app()->request->baseUrl; ?>/css/images/guide_banner.png" /></a>
+            </div>
         </div>
         <div id="main" class="container col-lg-9">
             <div id="content">

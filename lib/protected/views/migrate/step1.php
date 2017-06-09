@@ -7,6 +7,17 @@
     <div id="step-content">
         <blockquote> <p class="tip"> <?php echo Yii::t('frontend', $step->descriptions); ?> </p> </blockquote>
 
+        <!-- Form Buttons-->
+        <div class="step-controls">
+            <?php if ($step->status == MigrateSteps::STATUS_NOT_DONE): ?>
+                <button type="submit" id="step-<?php echo $step->sorder; ?>" class="btn btn-primary need-validate-form"><span class="glyphicon glyphicon-save"></span> <?php echo Yii::t('frontend', 'Save'); ?></button>
+            <?php else: ?>
+                <button type="submit" id="step-<?php echo $step->sorder; ?>" class="btn btn-danger need-validate-form"><span class="glyphicon glyphicon-save"></span> <?php echo Yii::t('frontend', 'Update'); ?></button>
+                <a href="<?php echo Yii::app()->createUrl("migrate/step" . ($step->sorder+1)); ?>" class="btn btn-primary"><span class="glyphicon glyphicon-forward"></span> <?php echo Yii::t('frontend', 'Next Step'); ?></a>
+            <?php endif; ?>
+        </div>
+        <!--// Form Buttons-->
+
         <div style="width: 45%;display: inline-block;">
             <h3><?php echo Yii::t('frontend', 'Magento 1.x');?></h3>
             <div class="panel-group">
@@ -24,6 +35,10 @@
                         <div class="form-group">
                             <label for="mg1-host" class="control-label"><?php echo Yii::t('frontend', 'Database Server Host');?></label>
                             <input type="text" class="form-control" id="mg1-host" name="mg1_host" value="<?php echo isset($settings->mg1_host) ? $settings->mg1_host : '' ?>" placeholder="localhost" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="mg1-db-port" class="control-label"><?php echo Yii::t('frontend', 'Database Server Port');?></label>
+                            <input type="text" class="form-control" id="mg1-db-port" name="mg1_db_port" value="<?php echo isset($settings->mg1_db_port) ? $settings->mg1_db_port : '' ?>" placeholder="Leave blank to use default port: <?php echo ini_get("mysqli.default_port"); ?>"/>
                         </div>
                         <div class="form-group">
                             <label for="mg1-db-user" class="control-label"><?php echo Yii::t('frontend', 'Database Server Username');?></label>
@@ -56,6 +71,10 @@
                             <input type="text" class="form-control" id="mg2-host" name="mg2_host" value="<?php echo isset($settings->mg2_host) ? $settings->mg2_host : '' ?>" placeholder="localhost" required/>
                         </div>
                         <div class="form-group">
+                            <label for="mg2-db-port" class="control-label"><?php echo Yii::t('frontend', 'Database Server Port');?></label>
+                            <input type="text" class="form-control" id="mg2-db-port" name="mg2_db_port" value="<?php echo isset($settings->mg2_db_port) ? $settings->mg2_db_port : '' ?>" placeholder="Leave blank to use default port: <?php echo ini_get("mysqli.default_port"); ?>"/>
+                        </div>
+                        <div class="form-group">
                             <label for="mg2-db-user" class="control-label"><?php echo Yii::t('frontend', 'Database Server Username');?></label>
                             <input type="text" class="form-control" id="mg2-db-user" name="mg2_db_user" value="<?php echo isset($settings->mg2_db_user) ? $settings->mg2_db_user : '' ?>" placeholder="username" required />
                         </div>
@@ -75,16 +94,5 @@
                 </div>
             </div>
         </div>
-
-        <!-- Form Buttons-->
-        <div class="step-controls">
-            <?php if ($step->status == MigrateSteps::STATUS_NOT_DONE): ?>
-                <button type="submit" id="step-<?php echo $step->sorder; ?>" class="btn btn-primary need-validate-form"><span class="glyphicon glyphicon-save"></span> <?php echo Yii::t('frontend', 'Save'); ?></button>
-            <?php else: ?>
-                <button type="submit" id="step-<?php echo $step->sorder; ?>" class="btn btn-danger need-validate-form"><span class="glyphicon glyphicon-save"></span> <?php echo Yii::t('frontend', 'Update'); ?></button>
-                <a href="<?php echo Yii::app()->createUrl("migrate/step" . ($step->sorder+1)); ?>" class="btn btn-primary"><span class="glyphicon glyphicon-forward"></span> <?php echo Yii::t('frontend', 'Next Step'); ?></a>
-            <?php endif; ?>
-        </div>
-        <!--// Form Buttons-->
     </div>
 </form>

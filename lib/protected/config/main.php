@@ -5,7 +5,7 @@ return CMap::mergeArray(
     require(dirname(__FILE__) . '/config.php'), array(
 
         'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-        'name'=>'Migrate Data From Magento 1.x to Magento 2.x',
+        'name'=>'UB Data Migration Lite: Allow migrate some data from Magento CE 1.x to Magento CE 2.x',
 
         // preloading 'log' component
         'preload'=>array('log'),
@@ -46,7 +46,7 @@ return CMap::mergeArray(
 
             //Database of tool
 //            'db' => array(
-//                'connectionString' => 'mysql:host=localhost;dbname=ub_tool',
+//                'connectionString' => 'mysql:host=localhost;port=3306;dbname=ub_tool',
 //                'emulatePrepare' => true,
 //                'username' => 'root',
 //                'password' => '',
@@ -77,11 +77,11 @@ return CMap::mergeArray(
         // using Yii::app()->params['paramName']
         'params'=> array(
             // this is displayed in the header section
-            'title'=>'WiseDataMigration - WiseRobot',
+            'title'=>'Migrate Data Tool for Magento - UberTheme',
             // this is used in error pages
-            'adminEmail'=>'an.ho1991@gmail.com',
+            'adminEmail'=>'quynhvv@joomsolutions.com',
             // the copyright information displayed in the footer section
-            'copyrightInfo'=>'Copyright &copy; 2016 by WiseRobot',
+            'copyrightInfo'=>'Copyright &copy; 2015 by Ubertheme.com',
         )
     )
 );

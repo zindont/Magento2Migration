@@ -6,16 +6,7 @@
     <div id="step-content">
         <blockquote> <p class="tip"> <?php echo Yii::t('frontend', $step->descriptions); ?> </p> </blockquote>
 
-        <!--  Form Buttons-->
-        <div class="step-controls">
-            <?php if ($step->status == MigrateSteps::STATUS_NOT_DONE): ?>
-                <button type="submit" class="btn btn-primary"><?php echo Yii::t('frontend', 'Start'); ?></button>
-            <?php else: ?>
-                <a href="<?php echo Yii::app()->createUrl("migrate/reset/step/" . $step->sorder); ?>" class="btn btn-danger"><?php echo Yii::t('frontend', 'Reset'); ?></a>
-                <a href="<?php echo Yii::app()->createUrl("migrate/step" . ($step->sorder+1)); ?>" class="btn btn-primary"><?php echo Yii::t('frontend', 'Next Step'); ?></a>
-            <?php endif; ?>
-        </div>
-        <!--// Form Buttons-->
+        <?php $this->renderPartial('_frmButtons', array('step' => $step)); ?>
 
          <?php
         //get migrated category ids
@@ -33,7 +24,7 @@
                 <h4>
                     <?php $checked = ( sizeof($categories) == sizeof($migrated_category_ids) ) ? true : false;  ?>
                     <input type="checkbox" <?php echo ($checked) ? "checked" : ''; ?> id="select_all_categories" name="select_all_categories" />
-                    <span> <?php echo Yii::t('frontend', 'Select All');?> </span>
+                    <label title="<?php echo Yii::t('frontend', 'Click here to select all categories');?>" for="select_all_categories"> <?php echo Yii::t('frontend', 'Select All');?> </label>
                 </h4>
 
                 <?php if ($rootCategories): ?>
@@ -134,16 +125,7 @@
         </ul>
     </div>
 
-    <!--  Form Buttons-->
-    <div class="step-controls">
-        <?php if ($step->status == MigrateSteps::STATUS_NOT_DONE): ?>
-            <button type="submit" class="btn btn-primary"><?php echo Yii::t('frontend', 'Start'); ?></button>
-        <?php else: ?>
-            <a href="<?php echo Yii::app()->createUrl("migrate/reset/step/" . $step->sorder); ?>" class="btn btn-danger"><?php echo Yii::t('frontend', 'Reset'); ?></a>
-            <a href="<?php echo Yii::app()->createUrl("migrate/step" . ($step->sorder+1)); ?>" class="btn btn-primary"><?php echo Yii::t('frontend', 'Next Step'); ?></a>
-        <?php endif; ?>
-    </div>
-    <!--// Form Buttons-->
+    <?php $this->renderPartial('_frmButtons', array('step' => $step)); ?>
 </form>
 
 <script type="text/javascript">

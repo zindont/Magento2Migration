@@ -5,8 +5,13 @@
                 $action = Yii::app()->controller->action->id;
                 $class = ($action == $step->code) ? "active" : (($step->status != MigrateSteps::STATUS_DONE) ? "disabled" : "");
                 $title = $step->sorder." - ".$step->title;
+                if ($step->sorder > 5 ){
+                    $title = '<span class="glyphicon glyphicon-lock"></span> ' . $title;
+                }
                 if ($step->status == MigrateSteps::STATUS_DONE){
                     $title = '<span class="glyphicon glyphicon-ok-sign text-success"></span> '.$title;
+                } elseif ($step->status == MigrateSteps::STATUS_SKIPPING) {
+                    $title = '<span class="glyphicon glyphicon-bookmark"></span> '.$title . '<span class="skipped"> ('.Yii::t('frontend', 'skipped').')</span>';
                 }
             ?>
             <li class="<?php echo $class?>">

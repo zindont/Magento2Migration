@@ -15,7 +15,7 @@
     ?>
     <?php foreach ($websites as $website): ?>
     <ul class="list-group">
-        <li class="list-group-item">
+        <li class="list-group-item website">
             <h4 class="list-group-item-heading">
                 <?php if ($checked = in_array($website->website_id, $migrated_website_ids)): ?>
                     <span class="glyphicon glyphicon-ok-sign text-success"></span>
@@ -36,7 +36,7 @@
             <?php if ($storeGroups): ?>
             <ul class="list-group">
                 <?php foreach ($storeGroups as $storeGroup): ?>
-                    <li class="list-group-item">
+                    <li class="list-group-item store">
                         <h5 class="list-group-item-heading">
                             <?php if ($checked = in_array($storeGroup->group_id, $migrated_store_group_ids)): ?>
                                 <span class="glyphicon glyphicon-ok-sign text-success"></span>
@@ -56,7 +56,7 @@
                         <?php if ($stores): ?>
                             <ul class="list-group">
                                 <?php foreach ($stores as $store): ?>
-                                    <li class="list-group-item">
+                                    <li class="list-group-item store-view">
                                         <?php if ($checked = in_array($store->store_id, $migrated_store_ids)): ?>
                                             <span class="glyphicon glyphicon-ok-sign text-success"></span>
                                         <?php endif; ?>

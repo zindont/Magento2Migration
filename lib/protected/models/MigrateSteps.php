@@ -14,8 +14,10 @@
  */
 class MigrateSteps extends MigrateStepsPeer
 {
-    const STATUS_DONE = 1;
     const STATUS_NOT_DONE = 0;
+    const STATUS_DONE = 1;
+    const STATUS_SKIPPING = 2
+    ;
     const SQL_COMMAND_DELIMETER = ';';
 
     //entity type const
@@ -60,37 +62,6 @@ class MigrateSteps extends MigrateStepsPeer
         }
 
         return $result;
-    }
-
-    public static function getMage2StoreId($mage1StoreId){
-        $id = NULL;
-        if (isset($mage1StoreId)){
-            if (is_null($mage1StoreId)){
-                $id = 'NULL';
-            } else {
-                $cacheId = "store_id2_{$mage1StoreId}";
-                $val = Yii::app()->cache->get($cacheId);
-                if (!$val) {
-                    $store1 = Mage1Store::model()->find("store_id = {$mage1StoreId}");
-                    if ($store1){
-                        $store2 = Mage2Store::model()->find("code = '{$store1->code}'");
-                        if ($store2) {
-                            $id = $store2->store_id;
-                        }
-                    } else{
-                        $id = $mage1StoreId;
-                    }
-                    
-                    //save to cache for later
-                    Yii::app()->cache->set($cacheId, $id, 86400); // one day
-                } else {
-                    $id = $val;
-                }
-            }
-
-        }
-
-        return $id;
     }
 
     public static function getMage2AttributeSetId($mage1AttrSetId, $entity_type_code = null){
@@ -147,9 +118,9 @@ class MigrateSteps extends MigrateStepsPeer
     public static function getMage2AttributeId($mage1AttrId, $entityTypeId = 3){
         $id = null;
         if (isset($mage1AttrId)){
-            $cacheId = "attrubute_id2_{$entityTypeId}_{$mage1AttrId}";
+            $cacheId = "attribute_id2_{$entityTypeId}_{$mage1AttrId}";
             $val = Yii::app()->cache->get($cacheId);
-            if (!$val) { 
+            if (!$val) {
                 $attr1 = Mage1Attribute::model()->findByPk($mage1AttrId);
                 if ($attr1){
                     //msrp_enabled was changed to msrp in magento2
@@ -188,7 +159,7 @@ class MigrateSteps extends MigrateStepsPeer
                 $code = $val;
             }
         }
-        
+
         return $code;
     }
 
@@ -475,23 +446,6 @@ class MigrateSteps extends MigrateStepsPeer
         return $total;
     }
 
-    public static function MG1HasProduct($entity_id){
-        $result = 0;
-        if ($entity_id > 0){
-            $migrated_store_ids = isset(Yii::app()->session['migrated_store_ids']) ? Yii::app()->session['migrated_store_ids'] : array();
-            $str_store_ids = implode(',', $migrated_store_ids);
-            $db = Yii::app()->mage2;
-            $tablePrefix = $db->tablePrefix;
-
-            $sql = "SELECT COUNT(entity_id) FROM {$tablePrefix}catalog_product_entity";
-            $sql .= " WHERE entity_id = '{$entity_id}' ";
-            echo $sql;
-            $result = $db->createCommand($sql)->queryScalar();
-        }
-
-        return $result;
-    }
-
     public static function getMG1VersionOptions(){
         $options = array(
             'mage19x' => Yii::t('frontend', 'Magento 1.9.x'),
@@ -511,23 +465,6 @@ class MigrateSteps extends MigrateStepsPeer
         }
 
         return $ver;
-    }
-
-    public static function getMG2Version(){
-        $ver = NULL;
-        $composerFile = self::getMG2BasePath().'composer.json';
-        if (file_exists($composerFile)){
-            $configData = file_get_contents($composerFile);
-            $configData = json_decode($configData,true );
-            $ver = $configData['version'];
-        }
-        return $ver;
-    }    
-
-    public static function getMG2BasePath(){
-        $mage2path = Yii::app()->basePath;
-        $mage2path = substr_replace($mage2path , '' , strpos($mage2path, 'app') ,strlen($mage2path) );
-        return $mage2path;
     }
 
     public static function replaceCatalogRuleModels($data){
@@ -567,7 +504,7 @@ class MigrateSteps extends MigrateStepsPeer
 
         return $data;
     }
-    
+
     public static function getStringErrors($errors = array()){
         $strs = array();
         if ($errors) {
@@ -577,7 +514,7 @@ class MigrateSteps extends MigrateStepsPeer
                 }
             }
         }
-        
+
         return implode('<br/>- ', $strs);
     }
 }
